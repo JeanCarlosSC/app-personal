@@ -4,13 +4,9 @@ import lib.sRAD.gui.component.VentanaEmergente
 import lib.sRAD.gui.sComponent.*
 import java.io.*
 
-object SingleFrame: SFrame(1280, 720) {
-    @JvmStatic
-    fun iniciar() {
-        SingleFrame.repaint()
-    }
-
+class SingleFrame: SFrame(1280, 720) {
     private val contenedor = SPanel(SPanel.EXTERNO, 160, 61, 960, 671)
+    private val pLectura = PLectura(this)
     private val bInicio = object: SButton(160, 29, 100, 32, "Inicio") {
         init {
             addActionListener { contenedor.set(PInicio) }
@@ -18,7 +14,7 @@ object SingleFrame: SFrame(1280, 720) {
     }
     private val bLectura = object: SButton(260, 29, 100, 32, "Lectura") {
         init {
-            addActionListener { contenedor.set(PLectura) }
+            addActionListener { contenedor.set(pLectura) }
         }
     }
     init {
@@ -42,7 +38,7 @@ private fun SPanel.set(panel: SPanel) {
 
 object PInicio: SPanel(2, 2, 956, 667)
 
-object PLectura: SPanel(2, 2, 956, 667) {
+class PLectura(val frame: SFrame) : SPanel(2, 2, 956, 667) {
     private val libros = mutableListOf<Libro>()
     private val bAddBook = object: SButton(0, 0, 32, 32, "+") {
         init {
@@ -50,7 +46,7 @@ object PLectura: SPanel(2, 2, 956, 667) {
                 val pdfName = STextField(170, 32, 200,32)
                 val bAdd = SButton(80, 80, 100, 32, "Añadir")
                 val bCancelar = SButton(212, 80, 100, 32, "Cancelar")
-                val ventanaEmergente = VentanaEmergente(SingleFrame,400,150)
+                val ventanaEmergente = VentanaEmergente(frame,400,150)
 
                 bAdd.addActionListener {
                     libros.add(Libro(pdfName.text, "0"))
@@ -87,7 +83,7 @@ object PLectura: SPanel(2, 2, 956, 667) {
                     val pdfPage = STextField(170, 64, 200,32, libros[i].page)
                     val bActualizar = SButton(80, 112, 100, 32, "Actualizar")
                     val bCancelar = SButton(212, 112, 100, 32, "Cancelar")
-                    val ventanaEmergente = VentanaEmergente(SingleFrame,400,182)
+                    val ventanaEmergente = VentanaEmergente(frame,400,182)
 
                     bActualizar.addActionListener {
                         libros[i].name = pdfName.text
