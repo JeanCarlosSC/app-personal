@@ -2,15 +2,13 @@ package lib.sRAD.gui.component;
 
 import lib.sRAD.gui.sComponent.SFrame;
 
-import static lib.sRAD.gui.component.Resource.grayBorder;
-
-public class VentanaEmergente extends SFrame {
+public class VentanaEmergente /*extends SFrame */{
+    /*
     private final SFrame frame;
 
     public VentanaEmergente(SFrame frame, int width, int height) {
         this.frame = frame;
-        setLayout(null);
-        setProperties(width, height, Theme.veBg, true, grayBorder,null);
+        setProperties(width, height, Theme.veBg);
     }
 
     public void lanzar() {
@@ -21,5 +19,5 @@ public class VentanaEmergente extends SFrame {
     public void cerrar() {
         frame.setEnabled(true);
         this.setVisible(false);
-    }
+    }*/
 }
