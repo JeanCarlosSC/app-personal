@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="app-personal:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/app_personal_jar</output-path>
+    <root id="archive" name="app-personal.jar">
+      <element id="module-output" name="app-personal" />
+      <element id="extracted-dir" path="$KOTLIN_BUNDLED$/lib/kotlin-stdlib.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$KOTLIN_BUNDLED$/lib/kotlin-reflect.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$KOTLIN_BUNDLED$/lib/kotlin-test.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
