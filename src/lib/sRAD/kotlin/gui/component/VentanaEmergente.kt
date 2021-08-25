@@ -1,9 +1,6 @@
-package lib.sRAD.gui.component;
+package lib.sRAD.kotlin.gui.component
 
-import lib.sRAD.gui.sComponent.SFrame;
-
-public class VentanaEmergente /*extends SFrame */{
-    /*
+class VentanaEmergente /*extends SFrame */ { /*
     private final SFrame frame;
 
     public VentanaEmergente(SFrame frame, int width, int height) {
