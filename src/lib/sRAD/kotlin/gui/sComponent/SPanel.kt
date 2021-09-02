@@ -17,7 +17,7 @@ open class SPanel: JPanel {
         setProperties(x, y, width, height, pBg, null)
     }
 
-    constructor (type: Int, x: Int, y: Int, width: Int, height: Int) {
+    constructor (x: Int, y: Int, width: Int, height: Int, type: Int) {
         when (type) {
             INTERNO -> setProperties(x, y, width, height, pBg, null)
             EXTERNO -> setProperties(x, y, width, height, pBg, pB, null)
