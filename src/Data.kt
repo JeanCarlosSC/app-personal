@@ -6,7 +6,7 @@ val inicio: LocalDate = LocalDate.of(2021, 8, 23)
 val hoy: LocalDate = LocalDate.now()
 val numeroDeSemana = (ChronoUnit.DAYS.between(inicio, hoy)).toInt()/7 + 1
 
-class Data {
+object Data {
     val asignaturas = mutableListOf<Asignatura>()
 
     init {
@@ -22,7 +22,7 @@ class Data {
         load()
     }
 
-    fun load() {
+    private fun load() {
         val path = File("data/autonomo.ser")
         if(path.exists() && path.isFile) {
             val entrada = ObjectInputStream(FileInputStream("data/autonomo.ser"))

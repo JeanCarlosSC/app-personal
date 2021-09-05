@@ -10,11 +10,14 @@ import javax.swing.JLabel
 import java.time.LocalDate.now
 
 class App: SFrame(1320, 704) {
-    val data = Data()
-    val pPrincipal = SPanel(164, 64, 900, 500, SPanel.EXTERNO)
+    //ui
+    private val pPrincipal = SPanel(196, 64, 900, 500, SPanel.EXTERNO)
+    //components
+    private val pResumen = SPanel(2, 2, 896, 496)
+    private val pListas = SPanel(2, 2, 896, 496)
 
     init {
-        //initial frame properties
+        //frame properties
         setMainBar("App personal")
 
         initComponents()
@@ -28,35 +31,58 @@ class App: SFrame(1320, 704) {
         isVisible = true
     }
 
-    fun createNav() {
-        val listas = SButton(32, 64, 100, 32, "Listas")
-        listas.addActionListener { 0 }
-        add(listas)
+    private fun createNav() {
+        val bResumen = SButton(64, 64, 100, 32, "Resumen")
+        bResumen.addActionListener { setResumen() }
+        add(bResumen)
+
+        val bListas = SButton(64, 114, 100, 32, "Listas")
+        bListas.addActionListener { setListas() }
+        add(bListas)
     }
 
-    fun initComponents() {
+    private fun initComponents() {
+        initPResumen()
         initPPrincipal()
     }
 
-    fun initPPrincipal() {
+    private fun initPResumen() {
         //header
         val lFecha = SLabel(32, 32, 700, 32, "${now()}: semana $numeroDeSemana.")
         lFecha.horizontalAlignment = JLabel.CENTER
-        pPrincipal.add(lFecha)
+        pResumen.add(lFecha)
 
         //asignaturas
-        for (i in 0 until data.asignaturas.size) {
-            val lAsignatura = SLabel(96, 64 + 32*i, 600, 32, "${data.asignaturas[i]}")
-            pPrincipal.add(lAsignatura)
+        for (i in 0 until Data.asignaturas.size) {
+            val lAsignatura = SLabel(96, 64 + 32*i, 600, 32, "${Data.asignaturas[i]}")
+            pResumen.add(lAsignatura)
 
             val btPlus = SButton(32, 66 + 32*i, 28, 28, "+")
             btPlus.addActionListener {
-                data.asignaturas[i].autonomo++
-                lAsignatura.text = data.asignaturas[i].toString()
+                Data.asignaturas[i].autonomo++
+                lAsignatura.text = Data.asignaturas[i].toString()
                 repaint()
-                data.save()
+                Data.save()
             }
-            pPrincipal.add(btPlus)
+            pResumen.add(btPlus)
         }
+    }
+
+    private fun initPPrincipal() {
+        pPrincipal.add(pResumen)
+    }
+
+    private fun setPanel(panel: SPanel) {
+        pPrincipal.removeAll()
+        pPrincipal.add(panel)
+        pPrincipal.repaint()
+    }
+
+    private fun setResumen() {
+        setPanel(pResumen)
+    }
+
+    private fun setListas() {
+        setPanel(pListas)
     }
 }
