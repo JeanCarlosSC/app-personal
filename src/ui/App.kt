@@ -1,13 +1,11 @@
 package ui
 
 import Data
-import lib.sRAD.kotlin.gui.sComponent.SButton
-import lib.sRAD.kotlin.gui.sComponent.SFrame
-import lib.sRAD.kotlin.gui.sComponent.SLabel
-import lib.sRAD.kotlin.gui.sComponent.SPanel
+import lib.sRAD.kotlin.gui.sComponent.*
 import numeroDeSemana
 import javax.swing.JLabel
 import java.time.LocalDate.now
+import javax.swing.JOptionPane
 
 class App: SFrame(1320, 704) {
     //ui
@@ -43,6 +41,7 @@ class App: SFrame(1320, 704) {
 
     private fun initComponents() {
         initPResumen()
+        initPListas()
         initPPrincipal()
     }
 
@@ -66,6 +65,14 @@ class App: SFrame(1320, 704) {
             }
             pResumen.add(btPlus)
         }
+    }
+
+    private fun initPListas() {
+        val lLista = SLabel(34, 32, 100, text="Lista")
+        pListas.add(lLista)
+
+        val cListas = SComboBox(164, 32, 150, 32, Data.getListNames())
+        pListas.add(cListas)
     }
 
     private fun initPPrincipal() {

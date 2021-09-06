@@ -31,7 +31,7 @@ open class SFrame(width: Int = 1280, height: Int = 720, background: Color = Them
     }
 
     fun setMainBar(title: String) {
-        setMainBar(title, "resources/sRAD/exampleLogo.png")
+        setMainBar(title, "resources/sRAD/logo.png")
     }
 
     fun setMainBar(title: String, pathLogo: String) {

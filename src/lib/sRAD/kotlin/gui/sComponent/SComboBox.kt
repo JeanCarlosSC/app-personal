@@ -9,8 +9,13 @@ import java.awt.Font
 import java.awt.Color
 import javax.swing.border.Border
 
-class SComboBox(type: Int, x: Int, y: Int, width: Int, height: Int, opciones: Array<String?>?) :
+class SComboBox(x: Int, y: Int, width: Int, height: Int, opciones: Array<String?>?) :
     JComboBox<Any?>(opciones) {
+
+    init {
+        setProperties(x, y, width, height, fontText, fFg, btBg, pB)
+    }
+
     fun setProperties(
         x: Int,
         y: Int,
@@ -29,13 +34,4 @@ class SComboBox(type: Int, x: Int, y: Int, width: Int, height: Int, opciones: Ar
         setBackground(background)
     }
 
-    companion object {
-        const val DECORADO = 1
-    }
-
-    init {
-        if (type == DECORADO) {
-            setProperties(x, y, width, height, fontText, fFg, btBg, pB)
-        }
-    }
 }

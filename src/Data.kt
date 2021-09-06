@@ -8,6 +8,7 @@ val numeroDeSemana = (ChronoUnit.DAYS.between(inicio, hoy)).toInt()/7 + 1
 
 object Data {
     val asignaturas = mutableListOf<Asignatura>()
+    private val listas = mutableListOf<Lista>()
 
     init {
         //informacion por defecto
@@ -30,6 +31,7 @@ object Data {
                 asignaturas[i].autonomo = entrada.readObject() as Int
             }
         }
+        loadLists()
     }
 
     fun save() {
@@ -37,6 +39,61 @@ object Data {
         for(i in 0 until 7) {
             salida.writeObject(asignaturas[i].autonomo)
         }
+        saveLists()
+    }
+
+    private fun loadLists() {
+        val path = File("data/listas.ser")
+        if(path.exists() && path.isFile) {
+            val entrada = ObjectInputStream(FileInputStream("data/listas.ser"))
+            val numListas = entrada.readObject() as Int
+            for (i in 0 until numListas) {
+                val numItems = entrada.readObject() as Int
+                listas.add(Lista(entrada.readObject() as String))
+                for (j in 0 until numItems) {
+                    listas[j].add(entrada.readObject() as String)
+                }
+            }
+        }
+        else {
+            listas.add(Lista("default"))
+        }
+    }
+
+    private fun saveLists() {
+        val salida = ObjectOutputStream(FileOutputStream("data/listas.ser"))
+        salida.writeObject(listas.size)
+        for(lista in listas) {
+            salida.writeObject(lista.getSize())
+            salida.writeObject(lista.nombre)
+            for (item in lista.getItems()) {
+                salida.writeObject(item)
+            }
+        }
+    }
+
+    fun getListNames(): Array<String?> {
+        val listNames: Array<String?> = arrayOfNulls(listas.size)
+        for (i in 0 until listas.size) {
+            listNames[i] = listas[i].nombre
+        }
+        return listNames
+    }
+}
+
+class Lista(var nombre: String) {
+    private val items = mutableListOf<String>()
+
+    fun add(item: String) {
+        items.add(item)
+    }
+
+    fun getSize(): Int {
+        return items.size
+    }
+
+    fun getItems(): MutableList<String> {
+        return items
     }
 }
 

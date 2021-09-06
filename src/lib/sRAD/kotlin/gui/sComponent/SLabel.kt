@@ -39,7 +39,7 @@ class SLabel : JLabel {
     }
 
     //TEXT LABEL
-    constructor(x: Int, y: Int, width: Int, height: Int, text: String?) {
+    constructor(x: Int, y: Int, width: Int, height: Int=28, text: String?) {
         setProperties(x, y, width, height, text, fontText, DTII14, LEFT, null)
     }
 
