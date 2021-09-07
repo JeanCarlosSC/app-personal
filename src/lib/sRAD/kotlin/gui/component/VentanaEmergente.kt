@@ -1,20 +1,22 @@
 package lib.sRAD.kotlin.gui.component
 
-class VentanaEmergente /*extends SFrame */ { /*
-    private final SFrame frame;
+import lib.sRAD.kotlin.gui.sComponent.SFrame
 
-    public VentanaEmergente(SFrame frame, int width, int height) {
-        this.frame = frame;
-        setProperties(width, height, Theme.veBg);
+open class VentanaEmergente(frame: SFrame, width: Int, height: Int): SFrame() {
+    private val frame: SFrame
+
+    init {
+        this.frame = frame
+        setProperties(width, height, Theme.veBg)
     }
 
-    public void lanzar() {
-        frame.setEnabled(false);
-        setVisible(true);
+    fun lanzar() {
+        frame.isEnabled = false
+        isVisible = true
     }
 
-    public void cerrar() {
-        frame.setEnabled(true);
-        this.setVisible(false);
-    }*/
+    fun cerrar() {
+        frame.isEnabled = true
+        this.isVisible = false
+    }
 }

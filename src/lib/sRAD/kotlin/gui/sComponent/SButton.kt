@@ -31,8 +31,8 @@ class SButton : JButton {
     constructor(
         x: Int,
         y: Int,
-        width: Int,
-        height: Int,
+        width: Int = 100,
+        height: Int = 32,
         text: String?,
         cursor: Cursor? = handCursor,
         font: Font? = fontTitleMini,

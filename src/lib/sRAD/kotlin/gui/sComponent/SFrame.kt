@@ -18,8 +18,9 @@ open class SFrame(width: Int = 1280, height: Int = 720, background: Color = Them
         setProperties(width, height, background, undecorated, border, relativeLocation, visible, defaultCloseOperation, layout)
     }
 
-    fun setProperties(width: Int, height: Int, background: Color, undecorated: Boolean, border: Border, relativeLocation: Component?,
-                      visible: Boolean, defaultCloseOperation: Int, layout: LayoutManager?) {
+    fun setProperties(width: Int, height: Int, background: Color, undecorated: Boolean = true,
+                      border: Border = blackBorderTransparent, relativeLocation: Component? = null,
+                      visible: Boolean = false, defaultCloseOperation: Int = EXIT_ON_CLOSE, layout: LayoutManager? = null) {
         setSize(width, height)
         contentPane.background = background
         isUndecorated = undecorated

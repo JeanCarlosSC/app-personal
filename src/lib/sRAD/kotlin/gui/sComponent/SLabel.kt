@@ -13,7 +13,7 @@ class SLabel : JLabel {
     /**
      * default
      */
-    constructor() : super() {}
+    constructor() : super()
 
     //ICON LABEL
     constructor(x: Int, y: Int, icon: ImageIcon) {
@@ -22,6 +22,13 @@ class SLabel : JLabel {
 
     constructor(x: Int, y: Int, icon: ImageIcon, cursor: Cursor?) {
         setProperties(x, y, icon, cursor)
+    }
+
+    /**
+     * Text Label
+     */
+    constructor(x: Int, y: Int, width: Int, height: Int=28, text: String?) {
+        setProperties(x, y, width, height, text, fontText, DTII14, LEFT, null)
     }
 
     /**
@@ -36,11 +43,6 @@ class SLabel : JLabel {
     fun setProperties(x: Int, y: Int, icon: ImageIcon, cursor: Cursor?) {
         setProperties(x, y, icon)
         this.cursor = cursor
-    }
-
-    //TEXT LABEL
-    constructor(x: Int, y: Int, width: Int, height: Int=28, text: String?) {
-        setProperties(x, y, width, height, text, fontText, DTII14, LEFT, null)
     }
 
     constructor(x: Int, y: Int, width: Int, height: Int, text: String?, hAlignment: Int) {
