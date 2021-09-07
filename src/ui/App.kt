@@ -4,8 +4,11 @@ import Data
 import lib.sRAD.kotlin.gui.component.VentanaEmergente
 import lib.sRAD.kotlin.gui.sComponent.*
 import numeroDeSemana
+import java.awt.event.MouseEvent
+import java.awt.event.MouseListener
 import javax.swing.JLabel
 import java.time.LocalDate.now
+import javax.swing.ImageIcon
 
 class App: SFrame(1320, 704) {
     //ui
@@ -57,7 +60,7 @@ class App: SFrame(1320, 704) {
 
             updateContent()
 
-            scroll = SScrollPane(32, 96, 600, 400, pTasks)
+            scroll = SScrollPane(32, 96, 832, 400, pTasks)
             add(scroll)
         }
 
@@ -66,7 +69,36 @@ class App: SFrame(1320, 704) {
 
             val lista = Data.listas[cListas.selectedIndex].items
             for (i in 0 until lista.size) {
-                val lTask = SLabel(32, 32+i*32, 500, text = lista[i])
+                val lTrash = object: SButton(32, 32+i*32, ImageIcon("resources/trash_off.png")), MouseListener {
+                    val trashOn = ImageIcon("resources/trash_on.png")
+                    val trashOff = ImageIcon("resources/trash_off.png")
+
+                    init {
+                        addMouseListener(this)
+                    }
+
+                    override fun mouseClicked(e: MouseEvent?) {  }
+
+                    override fun mousePressed(e: MouseEvent?) {
+                        Data.removeTask(cListas.selectedIndex, i)
+                        updateContent()
+                    }
+
+                    override fun mouseReleased(e: MouseEvent?) {  }
+
+                    override fun mouseEntered(e: MouseEvent?) {
+                        icon = trashOn
+                        setLocation(32, 34+i*32)
+                    }
+
+                    override fun mouseExited(e: MouseEvent?) {
+                        icon = trashOff
+                        setLocation(32, 32+i*32)
+                    }
+                }
+                pTasks.add(lTrash)
+
+                val lTask = SLabel(64, 32+i*32, 500, text = lista[i])
                 pTasks.add(lTask)
             }
             if(64+lista.size*32>396) {

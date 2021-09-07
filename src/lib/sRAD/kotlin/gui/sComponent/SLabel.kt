@@ -8,7 +8,7 @@ import java.awt.Font
 import javax.swing.ImageIcon
 import javax.swing.JLabel
 
-class SLabel : JLabel {
+open class SLabel : JLabel {
     //DEFAULT LABEL
     /**
      * default

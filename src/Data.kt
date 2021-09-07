@@ -69,6 +69,11 @@ object Data {
         listas[selectedIndex].add(task)
         saveLists()
     }
+
+    fun removeTask(indexList: Int, indexTask: Int) {
+        listas[indexList].items.removeAt(indexTask)
+        saveLists()
+    }
 }
 
 class Lista(var nombre: String) {

@@ -72,28 +72,19 @@ val TA6 = Color(218, 232, 252)
 val TA7 = Color(255, 242, 204)
 
 //Dark Theme based on Intellij Idea
-@JvmField
 val DTII1 = Color(49, 51, 53) //second background
-@JvmField
 val DTII2 = Color(43, 43, 43) //console background
-@JvmField
 val DTII3 = Color(50, 53, 55) //main background
-@JvmField
 val DTII4 = Color(60, 63, 65)
-@JvmField
 val DTII5 = Color(81, 81, 81) //mainToolbar bottom border
-@JvmField
 val DTII6 = Color(85, 85, 85) //console border
-@JvmField
 val DTII7 = Color(124, 123, 119) //comment font
-@JvmField
 val DTII8 = Color(114, 115, 122) //var names without use font
 val DTII9 = Color(152, 118, 168) //var names in use font
 val DTII10 = Color(106, 135, 89) //string font
 val DTII11 = Color(98, 148, 82) //javadoc font
 val DTII12 = Color(199, 118, 50) //reserve word font
 val DTII13 = Color(104, 150, 186) //numbers font
-@JvmField
 val DTII14 = Color(187, 187, 187) //main color font
 
 // -----------------------------------------FONT------------------------------------------------------------------------
