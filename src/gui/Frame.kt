@@ -10,7 +10,7 @@ import javax.swing.ImageIcon
 import javax.swing.JLabel
 
 class Frame: SFrame(1320, 704) {
-    private val pPrincipal = SPanel(196, 64, 900, 532, SPanel.EXTERNO)
+    private val pPrincipal = SPanel(260, 64, 900, 532, SPanel.EXTERNO)
     private val pResumen = SPanel(2, 2, 896, 496)
     private val pListas = object: SPanel(2, 2, 896, 496) {
         val lLista: SLabel
@@ -110,23 +110,15 @@ class Frame: SFrame(1320, 704) {
         }
     }
 
+    private val nav = Navigation(this, 64, 64)
+
     init {
         setMainBar("App personal")
 
         initComponents()
-        createNav()
 
+        add(nav)
         add(pPrincipal)
-    }
-
-    private fun createNav() {
-        val bResumen = SButton(64, 64, 100, 32, "Resumen")
-        bResumen.addActionListener { setResumen() }
-        add(bResumen)
-
-        val bListas = SButton(64, 114, 100, 32, "Listas")
-        bListas.addActionListener { setListas() }
-        add(bListas)
     }
 
     private fun initPPrincipal() {
@@ -151,11 +143,11 @@ class Frame: SFrame(1320, 704) {
         pResumen.add(lFecha)
     }
 
-    private fun setResumen() {
+    fun setResumen() {
         setPanel(pResumen)
     }
 
-    private fun setListas() {
+    fun setListas() {
         setPanel(pListas)
     }
 

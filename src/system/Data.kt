@@ -18,9 +18,9 @@ object Data {
     }
 
     private fun loadLists() {
-        val path = File("system/listas.ser")
+        val path = File("data/listas.ser")
         if(path.exists() && path.isFile) {
-            val entrada = ObjectInputStream(FileInputStream("system/listas.ser"))
+            val entrada = ObjectInputStream(FileInputStream("data/listas.ser"))
             val numListas = entrada.readObject() as Int
             for (i in 0 until numListas) {
                 val numItems = entrada.readObject() as Int
@@ -37,16 +37,16 @@ object Data {
 
     private fun saveLists() {
         // verifica existencia del archivo y la carpeta
-        val file = File("system/listas.ser")
+        val file = File("data/listas.ser")
         if (!file.exists()) {
-            val folder = File("system")
+            val folder = File("data")
             if(!folder.exists()) {
                 folder.mkdir()
             }
             file.createNewFile()
         }
         // guarda la informacion
-        val salida = ObjectOutputStream(FileOutputStream("system/listas.ser"))
+        val salida = ObjectOutputStream(FileOutputStream("data/listas.ser"))
         salida.writeObject(listas.size)
         for(lista in listas) {
             salida.writeObject(lista.items.size)

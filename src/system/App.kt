@@ -1,3 +1,5 @@
+package system
+
 import gui.Frame
 
 class App {
