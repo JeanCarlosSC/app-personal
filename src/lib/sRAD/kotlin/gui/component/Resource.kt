@@ -127,12 +127,9 @@ val blackBorder = BorderFactory.createLineBorder(BLACK, 2, false)
 
 //Dark Theme based on Intellij Idea
 val transparentBorder = BorderFactory.createLineBorder(transparent, 2, false)
-@JvmField
 val blackBorderTransparent = BorderFactory.createLineBorder(blackTransparent, 2, false)
-@JvmField
 val DTII1Border = BorderFactory.createLineBorder(DTII3, 2, false)
 val grayBorder = BorderFactory.createLineBorder(DTII7, 2, false)
-@JvmField
 val DTII4Border = BorderFactory.createLineBorder(DTII6, 2, false)
 val DTII4BorderRounded = BorderFactory.createLineBorder(DTII6, 2, true)
 val darkGrayBorder = BorderFactory.createLineBorder(DTII1, 2, false)

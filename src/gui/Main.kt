@@ -33,8 +33,7 @@ class Main(frame: SFrame): SPanel(260, 64, 900, 532, EXTERNO) {
                     val taTask = STextArea(32, 94, 436, 68)
                     add(taTask)
 
-                    val bAdd = SButton(134, 192, text = "Añadir")
-                    bAdd.addActionListener {
+                    val bAdd = SButton(134, 192, "Añadir") {
                         Data.newTask(cListas.selectedIndex, taTask.text)
                         cerrar()
                         taTask.text = ""
@@ -42,14 +41,12 @@ class Main(frame: SFrame): SPanel(260, 64, 900, 532, EXTERNO) {
                     }
                     add(bAdd)
 
-                    val bClose = SButton(266, 192, text = "Cerrar")
-                    bClose.addActionListener { cerrar() }
+                    val bClose = SButton(266, 192, "Cerrar") { cerrar() }
                     add(bClose)
                 }
             }
 
-            bAdd = SButton(364, 32, text = "+ Tarea")
-            bAdd.addActionListener { wNewTask.lanzar() }
+            bAdd = SButton(364, 32, "+ Tarea") { wNewTask.lanzar() }
             add(bAdd)
 
             updateContent()

@@ -4,7 +4,16 @@ import lib.sRAD.kotlin.gui.sComponent.SFrame
 
 class Frame: SFrame(1320, 704) {
 
-    private val nav = Navigation(this, 64, 64)
+    private val nav = object: Navigation(64, 64) {
+        override fun bResumenAction() {
+            main.setResumen()
+        }
+
+        override fun bListasAction() {
+            main.setListas()
+        }
+    }
+
     private val main = Main(this)
 
     init {
@@ -12,14 +21,6 @@ class Frame: SFrame(1320, 704) {
 
         add(nav)
         add(main)
-    }
-
-    fun setResumen() {
-        main.setResumen()
-    }
-
-    fun setListas() {
-        main.setListas()
     }
 
 }
