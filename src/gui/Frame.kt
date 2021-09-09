@@ -1,19 +1,16 @@
-package ui
+package gui
 
-import Data
 import lib.sRAD.kotlin.gui.component.VentanaEmergente
 import lib.sRAD.kotlin.gui.sComponent.*
 import numeroDeSemana
 import java.awt.event.MouseEvent
 import java.awt.event.MouseListener
-import javax.swing.JLabel
-import java.time.LocalDate.now
+import java.time.LocalDate
 import javax.swing.ImageIcon
+import javax.swing.JLabel
 
-class App: SFrame(1320, 704) {
-    //ui
+class Frame: SFrame(1320, 704) {
     private val pPrincipal = SPanel(196, 64, 900, 532, SPanel.EXTERNO)
-    //components
     private val pResumen = SPanel(2, 2, 896, 496)
     private val pListas = object: SPanel(2, 2, 896, 496) {
         val lLista: SLabel
@@ -31,7 +28,7 @@ class App: SFrame(1320, 704) {
 
             pTasks = SPanel(2, 2, 594, 400)
 
-            val wNewTask = object: VentanaEmergente(this@App, 500, 256) {
+            val wNewTask = object: VentanaEmergente(this@Frame, 500, 256) {
                 init {
                     val lTask = SLabel(32, 32, 150, text = "Ingrese tarea")
                     add(lTask)
@@ -114,18 +111,12 @@ class App: SFrame(1320, 704) {
     }
 
     init {
-        //frame properties
         setMainBar("App personal")
 
         initComponents()
         createNav()
-        add(pPrincipal)
 
-        //final frame properties
-        layout = null
-        setLocationRelativeTo(this)
-        defaultCloseOperation = EXIT_ON_CLOSE
-        isVisible = true
+        add(pPrincipal)
     }
 
     private fun createNav() {
@@ -138,18 +129,6 @@ class App: SFrame(1320, 704) {
         add(bListas)
     }
 
-    private fun initComponents() {
-        initPResumen()
-        initPPrincipal()
-    }
-
-    private fun initPResumen() {
-        //header
-        val lFecha = SLabel(32, 32, 700, 32, "${now()}: semana $numeroDeSemana.")
-        lFecha.horizontalAlignment = JLabel.CENTER
-        pResumen.add(lFecha)
-    }
-
     private fun initPPrincipal() {
         pPrincipal.add(pResumen)
     }
@@ -160,6 +139,18 @@ class App: SFrame(1320, 704) {
         pPrincipal.repaint()
     }
 
+    private fun initComponents() {
+        initPResumen()
+        initPPrincipal()
+    }
+
+    private fun initPResumen() {
+        //header
+        val lFecha = SLabel(32, 32, 700, 32, "${LocalDate.now()}: semana $numeroDeSemana.")
+        lFecha.horizontalAlignment = JLabel.CENTER
+        pResumen.add(lFecha)
+    }
+
     private fun setResumen() {
         setPanel(pResumen)
     }
@@ -167,4 +158,5 @@ class App: SFrame(1320, 704) {
     private fun setListas() {
         setPanel(pListas)
     }
+
 }
