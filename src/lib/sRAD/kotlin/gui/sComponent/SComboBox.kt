@@ -7,12 +7,14 @@ import lib.sRAD.kotlin.gui.component.fontText
 import javax.swing.JComboBox
 import java.awt.Font
 import java.awt.Color
+import java.awt.event.ActionListener
 import javax.swing.border.Border
 
-class SComboBox(x: Int, y: Int, width: Int, height: Int, opciones: Array<String?>?) :
+class SComboBox(x: Int, y: Int, width: Int, height: Int, opciones: Array<String?>?, actionListener: ActionListener) :
     JComboBox<Any?>(opciones) {
 
     init {
+        addActionListener(actionListener)
         setProperties(x, y, width, height, fontText, fFg, btBg, pB)
     }
 

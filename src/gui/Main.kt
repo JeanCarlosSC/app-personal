@@ -1,6 +1,6 @@
 package gui
 
-import gui.components.PListas
+import gui.main_view.PListas
 import lib.sRAD.kotlin.gui.sComponent.*
 
 class Main(frame: SFrame): SPanel(260, 64, 900, 532, EXTERNO) {

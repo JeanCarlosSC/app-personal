@@ -1,23 +1,25 @@
-package gui.components
+package gui.main_view
 
 import lib.sRAD.kotlin.gui.component.VentanaEmergente
 import lib.sRAD.kotlin.gui.sComponent.*
 import java.awt.event.MouseEvent
 import java.awt.event.MouseListener
+import javax.swing.DefaultComboBoxModel
 import javax.swing.ImageIcon
 
-class PListas(frame: SFrame): SPanel(2, 2, 896, 528) {
+class PListas(frame: SFrame): SPanel(2, 2, 894, 528) {
     private val lLista: SLabel
     private val cListas: SComboBox
     private val scroll: SScrollPane
     private val pTasks: SPanel
-    private val bAdd: SButton
+    private val bAddList: SButton
+    private val bAddTask: SButton
 
     init {
         lLista = SLabel(34, 32, 68, text = "Lista")
         add(lLista)
 
-        cListas = SComboBox(132, 32, 200, 32, Data.getListNames())
+        cListas = SComboBox(132, 32, 200, 32, Data.getListNames()) { updateContent() }
         add(cListas)
 
         pTasks = SPanel(2, 2, 594, 400)
@@ -43,8 +45,32 @@ class PListas(frame: SFrame): SPanel(2, 2, 896, 528) {
             }
         }
 
-        bAdd = SButton(364, 32, "+ Tarea") { wNewTask.lanzar() }
-        add(bAdd)
+        bAddTask = SButton(496, 32, "New Task") { wNewTask.lanzar() }
+        add(bAddTask)
+
+        val wNewList = object : VentanaEmergente(frame, 500, 256) {
+            init {
+                val lList = SLabel(32, 32, 150, text = "Ingrese nombre de lista")
+                add(lList)
+
+                val taList = STextArea(32, 94, 436, 68)
+                add(taList)
+
+                val bAdd = SButton(134, 192, "Añadir") {
+                    Data.newList(taList.text)
+                    cerrar()
+                    taList.text = ""
+                    updateContent()
+                }
+                add(bAdd)
+
+                val bClose = SButton(266, 192, "Cerrar") { cerrar() }
+                add(bClose)
+            }
+        }
+
+        bAddList = SButton(364, 32, "New list") { wNewList.lanzar() }
+        add(bAddList)
 
         updateContent()
 
@@ -53,6 +79,7 @@ class PListas(frame: SFrame): SPanel(2, 2, 896, 528) {
     }
 
     fun updateContent() {
+        //update panel tasks
         pTasks.removeAll()
 
         val lista = Data.listas[cListas.selectedIndex].items
@@ -98,7 +125,12 @@ class PListas(frame: SFrame): SPanel(2, 2, 896, 528) {
             pTasks.setSize(pTasks.width, 396)
         }
 
+        //update combo box list
+        val selectedIndex = cListas.selectedIndex
+        cListas.model = DefaultComboBoxModel<Any?>( Data.getListNames() )
+        cListas.selectedIndex = selectedIndex
+
         //repaint
-        pTasks.repaint()
+        repaint()
     }
 }
