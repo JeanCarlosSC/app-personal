@@ -16,17 +16,17 @@ class PListas(frame: SFrame): SPanel(2, 2, 894, 528) {
     private val bAddTask: SButton
 
     init {
-        lLista = SLabel(34, 32, 68, text = "Lista")
+        lLista = SLabel(34, 32, 68, text = "List")
         add(lLista)
 
         cListas = SComboBox(132, 32, 200, 32, Data.getListNames()) { updateContent() }
         add(cListas)
 
-        pTasks = SPanel(2, 2, 594, 400)
+        pTasks = SPanel(2, 2, 808, 400)
 
         val wNewTask = object : VentanaEmergente(frame, 500, 256) {
             init {
-                val lTask = SLabel(32, 32, 150, text = "Ingrese tarea")
+                val lTask = SLabel(32, 32, 150, text = "Type task")
                 add(lTask)
 
                 val taTask = STextArea(32, 94, 436, 68)
@@ -50,7 +50,7 @@ class PListas(frame: SFrame): SPanel(2, 2, 894, 528) {
 
         val wNewList = object : VentanaEmergente(frame, 500, 256) {
             init {
-                val lList = SLabel(32, 32, 150, text = "Ingrese nombre de lista")
+                val lList = SLabel(32, 32, 200, text = "Ingrese nombre de lista")
                 add(lList)
 
                 val taList = STextArea(32, 94, 436, 68)
@@ -113,7 +113,7 @@ class PListas(frame: SFrame): SPanel(2, 2, 894, 528) {
             }
             pTasks.add(lTrash)
 
-            val lTask = SLabel(64, 16+i*32, 500, text = lista[i])
+            val lTask = SLabel(64, 16+i*32, 710, text = lista[i])
             pTasks.add(lTask)
         }
 
